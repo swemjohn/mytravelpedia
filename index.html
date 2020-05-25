@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">    
+    <title>My Country Travel</title>        
+  </head>
+  <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        /* height: 100%; */
+        height:800px;
+        width:100%;
+      }
+      /* Optional: Makes the sample page fill the window. 
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      } */
+    </style>
+  <body>
+   <nav id="navbar">
+      <h1 class="logo">My Travelpedia</h1>
+      <!--<ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+      </ul>   -->
+    </nav> 
+    
+    
+   <div id="map"></div>
+    <script>
+      var map;
+      function initMap() {
+        //Map display
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 51.509865, lng: -0.118092},
+          zoom: 4
+        });
+        //icon image
+        /* var icon = {
+          url: 'paris.png', // url
+        scaledSize: new google.maps.Size(28, 28),
+      }; */
+      // Places viisted
+     var markers = [
+        {
+          coords:
+              {lat:48.8566, lng:2.3522},
+          icon:{
+                url: './img/paris.png',
+                scaledSize: new google.maps.Size(28, 28)
+              },
+        //  iconImage:"paris.png",
+           content : "Paris, 2013"
+           
+        },
+        {
+          coords:{
+                 lat:41.9028, 
+                 lng:12.4964
+              },
+              icon:{
+                    url: './img/rome.png',
+                    scaledSize: new google.maps.Size(28, 28)
+                  },
+           //iconImage :"rome.png",
+           content : "Rome, 2014"
+        },
+        {
+          coords:{
+              lat:55.953251, 
+              lng:-3.188267
+            },
+            icon:{
+                  url: './img/scotland.png',
+                  scaledSize: new google.maps.Size(28, 28)
+                },
+           //iconImage :"scotland.png",
+           content: "Scotland, 2015"
+        },
+        {
+          coords:{
+              lat:45.4408, 
+              lng:12.3155
+            },
+            icon:{
+                  url: './img/venice.png',
+                  scaledSize: new google.maps.Size(28, 28)
+                },
+           //Image: Venice
+           content: "Venice, 2017"
+        },
+        {
+          coords:{
+              lat:43.7696, 
+              lng:11.2558
+            },
+            icon:{
+                  url: './img/florence.png',
+                  scaledSize: new google.maps.Size(28, 28)
+                },
+           //iconImage :Florence,
+           content: "Florence, 2017"
+        },
+        {
+          coords:{
+              lat:43.7228, 
+              lng:10.4017
+            },
+            icon:{
+                  url: './img/pisa.png',
+                  scaledSize: new google.maps.Size(28, 28)
+                },
+           //Image: Pisa
+           content: "Pisa, 2017"
+        },
+        {
+          coords:{
+              lat:50.8949, 
+              lng:4.3415
+            },
+            icon:{
+                  url: './img/belgium.png',
+                  scaledSize: new google.maps.Size(28, 28)
+                },
+           //Image: Pisa
+           content: "Belgium, 2017"
+        },
+        {
+          coords:{
+              lat:41.4036, 
+              lng:2.1744
+            },
+            icon:{
+                  url: './img/barcelona.png',
+                  scaledSize: new google.maps.Size(28, 28)
+                },
+           //Image: La Sagrada familia
+           content: "Barcelona, 2017"
+        },
+        {
+          coords:{
+              lat:40.416775, 
+              lng:-3.703790
+            },
+            icon:{
+                  url: './img/spain.png',
+                  scaledSize: new google.maps.Size(28, 28)
+                },
+           //Image: madrid, Spain
+           content: "Madrid, Spain 2017"
+        },
+        {
+          coords:{
+              lat:38.736946, 
+              lng:-9.142685
+            },
+            icon:{
+                  url: './img/portugal.png',
+                  scaledSize: new google.maps.Size(28, 28)
+                },
+           //Image: Porto, lisbon
+           content: "Portugal, Lisbon 2018"
+        },
+        {
+          coords:{
+              lat:52.377956, 
+              lng:4.897070
+            },
+            icon:{
+                  url: './img/netherlands.png',
+                  scaledSize: new google.maps.Size(28, 28)
+                },
+           //Image: Amsterdam
+           content: "Amsterdam, Netherlands 2017"
+        },
+        {
+          coords:{
+              lat:37.983810, 
+              lng:23.727539
+            },
+            icon:{
+                  url: './img/greece.png',
+                  scaledSize: new google.maps.Size(28, 28)
+                },
+           //Image: Greece
+           content: "Greece, 2019"
+        },
+        {
+          coords:{
+              lat:48.6690, 
+              lng:19.6990
+            },
+            icon:{
+                  url: './img/slovakia.png',
+                  scaledSize: new google.maps.Size(28, 28)
+                },
+           //Image: Slovakia
+           content: "Bratislava, Slovakia 2018"
+        },
+        {
+          coords:{
+              lat:48.2082, 
+              lng:16.3738
+            },
+            icon:{
+                  url: './img/vienna.png',
+                  scaledSize: new google.maps.Size(28, 28)
+                },
+           //Image: Vienna
+           content: "Vienna, 2018"
+        },
+        {
+          coords:{
+              lat:45.9432, 
+              lng:24.9668
+            },
+            icon:{
+                  url: './img/romania.png',
+                  scaledSize: new google.maps.Size(28, 28)
+                },
+           //Image: Romanis
+           content: "Romania, 2019"
+        },
+        {
+          coords:{
+              lat:44.439663, 
+              lng:26.096306
+            },
+            icon:{
+                  url: './img/bucharest.png',
+                  scaledSize: new google.maps.Size(28, 28)
+                },
+           //Image: Romanis
+           content: "Bucharest, 2019"
+        },
+        {
+          coords:{
+              lat:41.0082, 
+              lng:28.9784
+            },
+            icon:{
+                  url: './img/istanbul.png',
+                  scaledSize: new google.maps.Size(28, 28)
+                },
+           //Image: Romanis
+           content: "Istanbul, Turkey 2013"
+        },
+        {
+          coords:{
+              lat:45.4642, 
+              lng:9.1900
+            },
+            icon:{
+                  url: './img/milan.png',
+                  scaledSize: new google.maps.Size(28, 28)
+                },
+           //Image: Milan
+           content: "Milan, 2016"
+        },
+        {
+          coords:{
+              lat:53.350140, 
+              lng:-6.266155
+            },
+            icon:{
+                  url: './img/ireland.png',
+                  scaledSize: new google.maps.Size(28, 28)
+                },
+           //Image: Ireland
+           content: "Ireland, 2018"
+        },
+        {
+          coords:{
+              lat:54.607868, 
+              lng:-5.926437
+            },
+            icon:{
+                  url: './img/northernireland.png',
+                  scaledSize: new google.maps.Size(28, 28)
+                },
+           //Image: Ireland
+           content: "Northern Ireland, 2018"
+        },
+        {
+          coords:{
+              lat:42.698334, 
+              lng:23.319941
+            },
+            icon:{
+                  url: './img/bulgaria.png',
+                  scaledSize: new google.maps.Size(28, 28)
+                },
+           //Image: Bulgaria, Varna
+           content: "Bulgaria, Varna 2019"
+        },
+        {
+          coords:{
+              lat:51.1657, 
+              lng:10.4515
+            },
+            icon:{
+                  url: './img/germany.png',
+                  scaledSize: new google.maps.Size(28, 28)
+                },
+           //Image: Germany
+           content: "Germany 2018"
+        },
+        {
+          coords:{
+              lat:26.8206, 
+              lng:30.8025
+            },
+            icon:{
+                  url: './img/egypt.png',
+                  scaledSize: new google.maps.Size(28, 28)
+                },
+           //Image: Germany
+           content: "Egypt 2019"
+        },
+        {
+          coords:{
+              lat:31.0461, 
+              lng:34.8516
+            },
+            icon:{
+                  url: './img/israel.png',
+                  scaledSize: new google.maps.Size(28, 28)
+                },
+           //Image: Germany
+           content: "Israel 2019"
+        },
+        {
+          coords:{
+              lat:30.5852, 
+              lng:36.2384
+            },
+            icon:{
+                  url: './img/jordan.png',
+                  scaledSize: new google.maps.Size(28, 28)
+                },
+           //Image: Germany
+           content: "Jordan 2019"
+        },
+        {
+          coords:{
+              lat:29.749907,
+              lng:-95.358421
+            },
+            icon:{
+                  url: './img/houston.png',
+                  scaledSize: new google.maps.Size(28, 28)
+                },
+           //Image: Houston
+           content: "Houston, 2019"
+        },
+        {
+          coords:{
+              lat:40.7648,
+              lng:-73.9808
+            },
+            icon:{
+                  url: './img/newyork.png',
+                  scaledSize: new google.maps.Size(28, 28)
+                },
+           //Image: New York
+           content: "New York, 2019"
+        },
+        {
+          coords:{
+              lat:38.889248,
+              lng:-77.050636
+            },
+            icon:{
+                  url: './img/washingtondc.png',
+                  scaledSize: new google.maps.Size(28, 28)
+                },
+           //Image: Washington, DC
+           content: "Washington, DC, 2019"
+        },
+        {
+        coords:{
+            lat:46.8182, 
+            lng:8.2275
+          },
+          icon:{
+                url: './img/swiz.png',
+                scaledSize: new google.maps.Size(35, 35)
+              },
+         //iconImage :"swiz.png",
+         content : "Switzerland, 2016"
+       }
+      ];
+      
+      // Loop through markers
+      for(var i = 0;i < markers.length;i++){
+        // Add marker
+        addMarker(markers[i]);
+      }
+      
+      
+      
+      
+      
+      
+        //Add marker
+        function addMarker(props){
+        var marker = new google.maps.Marker({
+          position:props.coords,
+          map:map,
+          icon:props.icon
+            
+        });
+          //icon:props.iconImage
+        
+        //marker.icon.scaledSize = new google.maps.Size(28, 28);
+        //console.log(marker.icon.scaledSize);
+        // Check for customicon
+       if(props.icon){
+         // Set icon image
+         marker.setIcon(props.icon);
+         
+       }
+          
+          //Check content
+          if(props.content){
+      var infoWindow = new google.maps.InfoWindow({
+        content: props.content
+        });
+      }
+        marker.addListener('click', function(){
+          infoWindow.open(map, marker);
+        });
+      }
+      }
+    
+  
+    </script>
+    <!--<script src="https://maps.googleapis.com/maps/api/staticmap?key=AIzaSyBA5BY6L9-uzajeiIsJYjD-pwMAawMHhJg&center=47.65,-122.35&zoom=12&format=png&maptype=roadmap&size=480x360">
+    
+    </script> -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBA5BY6L9-uzajeiIsJYjD-pwMAawMHhJg&callback=initMap"
+    async defer>
+  </script>  
+    <!--<script src="location.json"></script>
+    <script src="app.js"></script> -->
+  
+</body>        
+</html>      
